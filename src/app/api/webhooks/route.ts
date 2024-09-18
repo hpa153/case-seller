@@ -6,7 +6,6 @@ import Stripe from "stripe";
 import { db } from "@/db";
 import { stripe } from "@/lib/stripe";
 
-// import OrderReceivedEmail from "@/components/OrderReceivedEmail";
 // const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
