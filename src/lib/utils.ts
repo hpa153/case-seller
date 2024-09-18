@@ -1,3 +1,4 @@
+import { BASE_PRICE, PRODUCT_PRICES } from "@/constants";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -20,6 +21,17 @@ export const splitArray = <T>(array: Array<T>, numParts: number) => {
   }
 
   return result;
+};
+
+export const calcTotalPrice = (finish: string, material: string) => {
+  let price = BASE_PRICE;
+
+  if (finish === "textured") price += PRODUCT_PRICES.finish.textured;
+
+  if (material === "polycarbonate")
+    price += PRODUCT_PRICES.material.polycarbonate;
+
+  return price;
 };
 
 export const formatPrice = (price: number) => {

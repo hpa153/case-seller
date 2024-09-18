@@ -130,6 +130,7 @@ const FINISHES = {
 };
 
 export {
+  PRODUCT_PRICES,
   USER_IMAGES,
   PHONES,
   STEPS,
