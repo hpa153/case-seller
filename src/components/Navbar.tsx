@@ -3,7 +3,14 @@ import { ArrowRight } from "lucide-react";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 import MaxWidthWrapper from "./MaxWidthWrapper";
-import { buttonVariants } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
+import { cn } from "@/lib/utils";
 
 const Navbar = async () => {
   const { getUser } = getKindeServerSession();
@@ -21,38 +28,66 @@ const Navbar = async () => {
 
           <div className="h-full flex items-center space-x-4">
             {user ? (
-              <>
-                {isAdmin ? (
-                  <Link
-                    href="/dashboard"
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    role="combobox"
                     className={buttonVariants({
                       size: "sm",
                       variant: "ghost",
                     })}
                   >
-                    Dashboard ✨
-                  </Link>
-                ) : null}
-                <Link
-                  href="/configure/upload"
-                  className={buttonVariants({
-                    size: "sm",
-                    className: "hidden sm:flex items-center gap-1",
-                  })}
-                >
-                  Create case
-                  <ArrowRight className="ml-1.5 h-5 w-5" />
-                </Link>
-                <Link
-                  href="/api/auth/logout"
-                  className={buttonVariants({
-                    size: "sm",
-                    variant: "ghost",
-                  })}
-                >
-                  Sign out
-                </Link>
-              </>
+                    {user.given_name}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  {isAdmin ? (
+                    <DropdownMenuItem
+                      key="dashboard"
+                      className="flex text-sm gap-1 items-center p-1.5 cursor-default hover:bg-zinc-100"
+                    >
+                      <Link
+                        href="/dashboard"
+                        className={buttonVariants({
+                          size: "sm",
+                          variant: "ghost",
+                        })}
+                      >
+                        Dashboard ✨
+                      </Link>
+                    </DropdownMenuItem>
+                  ) : null}
+                  <DropdownMenuItem
+                    key="create-case"
+                    className="flex text-sm gap-1 items-center p-1.5 cursor-default hover:bg-zinc-100"
+                  >
+                    <Link
+                      href="/configure/upload"
+                      className={buttonVariants({
+                        size: "sm",
+                        className: "items-center gap-1",
+                      })}
+                    >
+                      Create case
+                      <ArrowRight className="ml-1.5 h-5 w-5" />
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    key="logout"
+                    className="flex text-sm gap-1 items-center p-1.5 cursor-default hover:bg-zinc-100"
+                  >
+                    <Link
+                      href="/api/auth/logout"
+                      className={buttonVariants({
+                        size: "sm",
+                        variant: "ghost",
+                      })}
+                    >
+                      Sign out
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             ) : (
               <>
                 <Link
