@@ -6,8 +6,6 @@ import { Resend } from "resend";
 import { db } from "@/db";
 import { stripe } from "@/lib/stripe";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(req: Request) {
   try {
     const body = await req.text();
