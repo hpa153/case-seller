@@ -78,7 +78,7 @@ const CreateCase = () => {
               {...getRootProps()}
             >
               <input
-                {...getRootProps()}
+                {...getInputProps()}
                 className="bg-gray-100/5 ring-0 pointer-events-none"
               />
               {isDragOver ? (
