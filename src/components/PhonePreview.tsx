@@ -32,11 +32,14 @@ const PhonePreview = ({
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
-  }, [ref.current]);
+  }, []);
 
-  let caseBackgroundColor = "bg-zinc-950";
-  if (color === "blue") caseBackgroundColor = "bg-blue-950";
-  if (color === "rose") caseBackgroundColor = "bg-rose-950";
+  let caseBackgroundColor =
+    color === "blue"
+      ? "bg-blue-950"
+      : color === "rose"
+      ? "bg-rose-950"
+      : "bg-zinc-950";
 
   return (
     <AspectRatio ref={ref} ratio={3000 / 2001} className="relative">
@@ -51,6 +54,7 @@ const PhonePreview = ({
       >
         <Image
           width={renderedDimensions.width / (3000 / 637)}
+          height={1000}
           className={cn(
             "phone-skew relative z-20 rounded-t-[15px] rounded-b-[10px] md:rounded-t-[30px] md:rounded-b-[20px]",
             caseBackgroundColor
