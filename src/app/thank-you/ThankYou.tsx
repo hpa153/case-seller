@@ -3,9 +3,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { getPaymentStatus } from "./actions";
 import { useSearchParams } from "next/navigation";
-import { Loader2 } from "lucide-react";
 import PhonePreview from "@/components/PhonePreview";
 import { formatPrice } from "@/lib/utils";
+import ThankYouNotification from "./ThankYouNotification";
 
 const ThankYou = () => {
   const searchParams = useSearchParams();
@@ -20,25 +20,19 @@ const ThankYou = () => {
 
   if (data === undefined) {
     return (
-      <div className="w-full mt-24 flex justify-center">
-        <div className="flex flex-col items-center gap-2">
-          <Loader2 className="h-8 w-8 animate-spin text-zinc-500" />
-          <h3 className="font-semibold text-xl">Loading your order...</h3>
-          <p>This won&rsquo;t take long.</p>
-        </div>
-      </div>
+      <ThankYouNotification
+        title="Loading your order"
+        subtitle="This won&rsquo;t take long."
+      />
     );
   }
 
   if (data === false) {
     return (
-      <div className="w-full mt-24 flex justify-center">
-        <div className="flex flex-col items-center gap-2">
-          <Loader2 className="h-8 w-8 animate-spin text-zinc-500" />
-          <h3 className="font-semibold text-xl">Verifying your payment...</h3>
-          <p>This might take a moment.</p>
-        </div>
-      </div>
+      <ThankYouNotification
+        title="Verifying your payment"
+        subtitle="This might take a moment."
+      />
     );
   }
 
@@ -85,7 +79,7 @@ const ThankYou = () => {
         </div>
 
         <div>
-          <div className="grid grid-cols-2 gap-x-6 py-10 text-sm">
+          <div className="grid grid-cols-1 xs:grid-cols-2 gap-x-6 py-10 text-sm">
             <div>
               <p className="font-medium text-gray-900">Shipping address</p>
               <div className="mt-2 text-zinc-700">
@@ -98,7 +92,7 @@ const ThankYou = () => {
                 </address>
               </div>
             </div>
-            <div>
+            <div className="mt-4 xs:mt-0">
               <p className="font-medium text-gray-900">Billing address</p>
               <div className="mt-2 text-zinc-700">
                 <address className="not-italic">
@@ -112,13 +106,13 @@ const ThankYou = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-x-6 border-t border-zinc-200 py-10 text-sm">
+          <div className="grid grid-cols-1 xs:grid-cols-2 gap-x-6 border-t border-zinc-200 py-10 text-sm">
             <div>
               <p className="font-medium text-zinc-900">Payment status</p>
               <p className="mt-2 text-zinc-700">Paid</p>
             </div>
 
-            <div>
+            <div className="mt-4 xs:mt-0">
               <p className="font-medium text-zinc-900">Shipping Method</p>
               <p className="mt-2 text-zinc-700">
                 DHL, takes up to 3 working days

@@ -13,6 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 const CreateCase = () => {
   const router = useRouter();
   const { toast } = useToast();
+  const maxSize = 1_048_576;
 
   const [isDragOver, setIsDragOver] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
@@ -35,6 +36,17 @@ const CreateCase = () => {
     const [file] = rejectedFiles;
 
     setIsDragOver(false);
+
+    if (file.file.size > maxSize) {
+      toast({
+        title: `Your image exceeded the file size limit (4MB)!`,
+        description:
+          "Please choose another image instead or resize your image.",
+        variant: "destructive",
+      });
+
+      return;
+    }
 
     toast({
       title: `${file.file.type
@@ -71,6 +83,7 @@ const CreateCase = () => {
           }}
           onDragEnter={() => setIsDragOver(true)}
           onDragLeave={() => setIsDragOver(false)}
+          maxFiles={1}
         >
           {({ getRootProps, getInputProps }) => (
             <div

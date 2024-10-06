@@ -24,7 +24,7 @@ const Footer = () => {
                 Privacy Policy
               </Link>
               <Link href="#" className="footer-link">
-                Cookie Policy
+                About Us
               </Link>
             </div>
           </div>

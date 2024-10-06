@@ -129,6 +129,8 @@ const FINISHES = {
   ],
 };
 
+const ITEMS_PER_PAGE = 1;
+
 export {
   PRODUCT_PRICES,
   USER_IMAGES,
@@ -139,4 +141,5 @@ export {
   MODELS,
   MATERIALS,
   FINISHES,
+  ITEMS_PER_PAGE,
 };

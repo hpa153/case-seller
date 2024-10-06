@@ -10,7 +10,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { cn } from "@/lib/utils";
 
 const Navbar = async () => {
   const { getUser } = getKindeServerSession();
@@ -40,11 +39,12 @@ const Navbar = async () => {
                     {user.given_name}
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent>
+                <DropdownMenuContent className="flex flex-col gap-2">
                   {isAdmin ? (
                     <DropdownMenuItem
+                      asChild
                       key="dashboard"
-                      className="flex text-sm gap-1 items-center p-1.5 cursor-default hover:bg-zinc-100"
+                      className="flex text-sm items-center p-1.5 mt-2 cursor-default hover:bg-zinc-100"
                     >
                       <Link
                         href="/dashboard"
@@ -58,6 +58,7 @@ const Navbar = async () => {
                     </DropdownMenuItem>
                   ) : null}
                   <DropdownMenuItem
+                    asChild
                     key="create-case"
                     className="flex text-sm gap-1 items-center p-1.5 cursor-default hover:bg-zinc-100"
                   >
@@ -73,6 +74,7 @@ const Navbar = async () => {
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem
+                    asChild
                     key="logout"
                     className="flex text-sm gap-1 items-center p-1.5 cursor-default hover:bg-zinc-100"
                   >
@@ -89,7 +91,7 @@ const Navbar = async () => {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <>
+              <div>
                 <Link
                   href="/api/auth/register"
                   className={buttonVariants({
@@ -122,7 +124,7 @@ const Navbar = async () => {
                   Create case
                   <ArrowRight className="ml-1.5 h-5 w-5" />
                 </Link>
-              </>
+              </div>
             )}
           </div>
         </div>
