@@ -4,6 +4,7 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { db } from "@/db";
 import Dashboard from "./Dashboard";
 import { ITEMS_PER_PAGE } from "@/constants";
+import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 
 const Page = async () => {
   const { getUser } = getKindeServerSession();
@@ -47,11 +48,13 @@ const Page = async () => {
   });
 
   return (
-    <Dashboard
-      lastWeekSum={lastWeekSum._sum.amount ?? 0}
-      lastMonthSum={lastMonthSum._sum.amount ?? 0}
-      initialPages={initialPages._count.id / ITEMS_PER_PAGE}
-    />
+    <MaxWidthWrapper>
+      <Dashboard
+        lastWeekSum={lastWeekSum._sum.amount ?? 0}
+        lastMonthSum={lastMonthSum._sum.amount ?? 0}
+        initialPages={initialPages._count.id / ITEMS_PER_PAGE}
+      />
+    </MaxWidthWrapper>
   );
 };
 

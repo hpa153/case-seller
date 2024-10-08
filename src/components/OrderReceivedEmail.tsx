@@ -26,7 +26,7 @@ const OrderReceivedEmail = ({
   const baseUrl =
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
-      : "https://case-seller.vercel.app/";
+      : "https://case-cobra-hpa.vercel.app";
 
   return (
     <Html>
@@ -45,7 +45,7 @@ const OrderReceivedEmail = ({
             <Heading style={global.heading}>Thank you for your order!</Heading>
             <Text style={global.text}>
               We&apos;re preparing everything for delivery and will notify you
-              once your package has been shipped. Delivery usually takes 2 days.
+              once your package has been shipped. Delivery usually takes 3 days.
             </Text>
             <Text style={{ ...global.text, marginTop: 24 }}>
               If you have any questions regarding your order, please feel free
@@ -54,7 +54,9 @@ const OrderReceivedEmail = ({
           </Section>
           <Hr style={global.hr} />
           <Section style={global.defaultPadding}>
-            <Text style={adressTitle}>Shipping to: {shippingAddress.name}</Text>
+            <Text style={addressTitle}>
+              Shipping to: {shippingAddress.name}
+            </Text>
             <Text style={{ ...global.text, fontSize: 14 }}>
               {shippingAddress.street}, {shippingAddress.city},{" "}
               {shippingAddress.state} {shippingAddress.postalCode}
@@ -186,7 +188,7 @@ const message = {
   textAlign: "center",
 } as React.CSSProperties;
 
-const adressTitle = {
+const addressTitle = {
   ...paragraph,
   fontSize: "15px",
   fontWeight: "bold",

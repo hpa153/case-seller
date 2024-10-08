@@ -63,7 +63,7 @@ const Pagination = ({
       >
         Previous
       </Button>
-      <div className="w-fit flex flex-center justify-center border border-gray-300 rounded-md overflow-hidden">
+      <div className="hidden w-fit sm:flex flex-center justify-center border border-gray-300 rounded-md overflow-hidden">
         <Input
           type="text"
           onBlur={() => setPageValue(page.toString())}

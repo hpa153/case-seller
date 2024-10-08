@@ -10,6 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { cn } from "@/lib/utils";
 
 const Navbar = async () => {
   const { getUser } = getKindeServerSession();
@@ -60,7 +61,10 @@ const Navbar = async () => {
                   <DropdownMenuItem
                     asChild
                     key="create-case"
-                    className="flex text-sm gap-1 items-center p-1.5 cursor-default hover:bg-zinc-100"
+                    className={cn(
+                      "flex text-sm gap-1 items-center p-1.5 cursor-default hover:bg-zinc-100",
+                      { "mt-2": !isAdmin }
+                    )}
                   >
                     <Link
                       href="/configure/upload"
@@ -91,7 +95,7 @@ const Navbar = async () => {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <div>
+              <div className="flex">
                 <Link
                   href="/api/auth/register"
                   className={buttonVariants({
@@ -118,7 +122,7 @@ const Navbar = async () => {
                   href="/configure/upload"
                   className={buttonVariants({
                     size: "sm",
-                    className: "hidden sm:flex items-center gap-1",
+                    className: "hidden sm:flex items-center gap-1 ml-2",
                   })}
                 >
                   Create case
